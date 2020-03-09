@@ -1,0 +1,14 @@
+.custom-list{
+    margin-top: 0px !important;
+}
+
+.list-item{
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
+
+.list-item-cell{
+    margin: 8px 0px !important;
+}

@@ -1,4 +1,5 @@
-import {START_SEARCHING, SEARCHING_SUCCESS, SEARCHING_ERROR} from './types'
+import {START_SEARCHING, SEARCHING_SUCCESS, SEARCHING_ERROR} from './types';
+import API from '../rest/api';
 
 const startFetching = () =>{
     return{
@@ -9,7 +10,7 @@ const startFetching = () =>{
 
 const fetchingSuccess = (data) =>{
     return{
-        type:SEARCHING_SUCCESS,
+        type: SEARCHING_SUCCESS,
         payload: data,
         receivedDate: Date.now()
     }
@@ -26,5 +27,12 @@ const fetchingError = (err) => {
 export const fetchWorkout = () => {
     return async (dispatch) => {
         dispatch(startFetching())
+        return API.get()
+        .then(result => {
+            dispatch(fetchingSuccess(result.data))
+        })
+        .catch(error => {
+            dispatch(fetchingError(error))
+        })
     }
 }

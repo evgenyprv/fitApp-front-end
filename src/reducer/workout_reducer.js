@@ -1,6 +1,14 @@
 import {START_SEARCHING, SEARCHING_SUCCESS, SEARCHING_ERROR} from '../action/types'
 
-export default function workoutReducer(state = [], action){
+const intialState = {
+    isFetching: false,
+    payload: {
+        "BodyExercises": [],
+        "CoreExercises": []
+    },
+}
+
+export default function workoutReducer(state = intialState, action){
     switch(action.type){
         case START_SEARCHING:
                 return Object.assign({}, state, {
