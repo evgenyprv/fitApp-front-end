@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Button, Card} from 'semantic-ui-react'
+import { Container, Card} from 'semantic-ui-react'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 
@@ -15,11 +15,8 @@ class Home extends React.Component{
                     <Card centered = 'true'
                         raised='true'>
                         <Card.Content>
-                            <Link to = '/result' >
-                                <Button type='submit' 
-                                style={{height: '100px', width: '200px'}}>
-                                    Get My Daily Workout
-                                </Button>
+                            <Link to = '/result'>
+                                Get My Daily Workout    
                             </Link>
                         </Card.Content>
                     </Card>
