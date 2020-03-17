@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, List, Label } from 'semantic-ui-react';
+import { Container, Card, Label } from 'semantic-ui-react';
 import { connect } from 'react-redux'
 import {fetchWorkout} from '../action/search_workout';
 
@@ -7,10 +7,6 @@ import './Result.css';
 import ExerciseList from '../component/ExerciseList.jsx';
 
 class Result extends React.Component{
-
-    constructor(props){
-        super(props)
-    }
 
     componentWillMount(){
         this.props.fetchWorkoutData();

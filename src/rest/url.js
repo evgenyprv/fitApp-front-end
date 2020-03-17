@@ -1,1 +1,1 @@
-export const API_URL = 'https://kxtefv48s0.execute-api.us-east-1.amazonaws.com/dev/workout/random';
+export const API_URL = 'https://api.aftr.ca/v1/workout/random';
