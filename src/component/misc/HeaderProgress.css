@@ -1,0 +1,13 @@
+.ui.steps {
+    display: table;
+    width: 100%;
+}
+
+.ui.steps .step{
+    display:table-cell;
+}
+
+.ui.steps .step .title{
+    margin-top:16px;
+}
+

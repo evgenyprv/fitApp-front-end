@@ -1,0 +1,45 @@
+.custom-list{
+    margin: 0px 0px !important;
+}
+
+.list-item{
+    margin: 8px 8px;
+    display: flex !important;
+    flex-direction: row ;
+    justify-content: space-around;
+    align-items: stretch !important;
+    background-color: #fdf2f2;
+}
+
+.list-item-cell{
+    margin: 8px 0px !important;
+}
+
+.exercise-item-names{
+    flex-basis: 50%;
+    margin: 16px 0px 0px;
+}
+
+.button{
+    height: 70px;
+}
+
+.disable-button{
+    width: 81px;
+}
+
+.button-margins{
+    margin: 8px 8px !important;
+}
+
+.ui.button{
+    background:#fee6e6;
+}
+
+.ui.red.button{
+    background-color: #fee6e6;
+}
+
+.ui.red.button, .ui.red.buttons .button{
+    color: #3d3d3d;
+}

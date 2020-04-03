@@ -5,3 +5,16 @@
     align-items: center;
     height: 100vh;
 }
+
+.randomizer-link{
+    height: 100px;
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.ui.image{
+    width: 250px;
+    bottom: 50px;
+}

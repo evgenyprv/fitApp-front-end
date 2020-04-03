@@ -1,0 +1,11 @@
+.panel-card{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 16px !important;
+}
+
+.panel-label{
+    background-color: transparent !important;
+}

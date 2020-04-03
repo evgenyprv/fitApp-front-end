@@ -1,10 +1,14 @@
-import {START_SEARCHING, SEARCHING_SUCCESS, SEARCHING_ERROR} from '../action/types'
+import {START_SEARCHING, SEARCHING_SUCCESS, SEARCHING_ERROR, 
+    CLEAR_DATA} from '../action/types'
 
 const intialState = {
     isFetching: false,
     payload: {
-        "BodyExercises": [],
-        "CoreExercises": []
+        exercises: {
+            "Cardio": [],
+            "Body": [],
+            "Core": [],
+        }
     },
 }
 
@@ -17,7 +21,7 @@ export default function workoutReducer(state = intialState, action){
                 })
         case SEARCHING_SUCCESS:
             return Object.assign({}, state, {
-                isFetching: false, 
+                isFetching: false,
                 payload: action.payload,
                 receivedDate: action.receivedDate,
             })
@@ -27,6 +31,8 @@ export default function workoutReducer(state = intialState, action){
                 error: action.error,
                 receivedDate: action.receivedDate,
             })
+        case CLEAR_DATA:
+            return Object.assign({}, state, intialState)
         default:
             return state;
     }

@@ -2,5 +2,36 @@
     display: flex !important;
     flex-direction: column;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
+    margin: 32px 0px;
+}
+
+
+.container-card{
+    width: 400px !important;
+}
+
+.ui.steps {
+    display: table;
+    width: 100%;
+}
+
+.ui.steps .step{
+    display:table-cell;
+}
+
+.ui.steps .step .title{
+    margin-top:16px;
+}
+
+.ui.steps .step.active .title{
+    color: #3d3d3d;
+}
+
+.ui.ordered.steps .step.completed:before, .ui.steps .step.completed>.icon:before{
+    color: #fee6e6;
+}
+
+.ui.ordered.steps .step.active:before, .ui.steps .active.step .icon{
+    color:  #3d3d3d;
 }

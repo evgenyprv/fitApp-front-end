@@ -1,1 +1,1 @@
-export const API_URL = 'https://api.aftr.ca/v1/workout/random';
+export const API_URL = 'https://api.aftr.ca/v1';

@@ -1,0 +1,24 @@
+.footer-container{
+    display:flex !important;
+    justify-content: space-evenly;
+}
+
+.footer-container.group{
+    flex-direction: column;
+}
+
+.footer-container.nav {
+    flex-direction: row;
+}
+
+.pagination-button{
+    margin: 0;
+    background-color: transparent !important;
+}
+
+.finish-workout-button{
+    background-color: #fee6e6 !important;
+    margin: 20px 32px !important;
+    color: #3d3d3d !important;
+    font-size: 1.35rem !important;
+}
