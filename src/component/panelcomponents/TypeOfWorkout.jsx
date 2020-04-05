@@ -3,7 +3,9 @@ import {Dropdown, Label} from 'semantic-ui-react'
 
 import './style.css'
 
-const TypeOfWorkout = ({handleTypeWorkoutChange, typeOptions}) => {
+const TypeOfWorkout = (props) => {
+
+    const {workTypeError,handleTypeWorkoutChange, typeOptions} = props
 
     return(
         <div className="panel-card">
@@ -12,8 +14,8 @@ const TypeOfWorkout = ({handleTypeWorkoutChange, typeOptions}) => {
                 options={typeOptions} 
                 selection
                 search
-                onChange={handleTypeWorkoutChange}
-            />
+                error={workTypeError}
+                onChange={handleTypeWorkoutChange}/>
         </div>  
     )
 }

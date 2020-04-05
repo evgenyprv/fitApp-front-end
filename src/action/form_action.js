@@ -1,4 +1,5 @@
-import {WORKOUT_LOC_ADDED,TYPE_WORKOUT_ADDED, INCLUDED_CARDIO, INCLUDED_CORE} from '../action/types';
+import {WORKOUT_LOC_ADDED,TYPE_WORKOUT_ADDED, INCLUDED_CARDIO,
+     INCLUDED_CORE} from '../action/types';
 
 export const addWorkoutLoc = (data) =>{
     return{

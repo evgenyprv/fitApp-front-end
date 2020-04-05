@@ -1,14 +1,17 @@
 import React from 'react'
-import {Radio} from 'semantic-ui-react'
+import {Form} from 'semantic-ui-react'
 
-const WorkoutLocationPanel = ({workoutLoc, handleWorkoutLocChange}) => {
+const WorkoutLocationPanel = (props) => {
+
+    const {workoutLoc, handleWorkoutLocChange} = props
+
     return(
         <div className="panel-card">
-            <Radio label="Home" 
+            <Form.Radio label="Home" 
                 value='home'
                 checked={workoutLoc === 'home'}
                 onChange={handleWorkoutLocChange}/>
-            <Radio label="Gym" 
+            <Form.Radio label="Gym" 
                 value='gym'
                 checked={workoutLoc === 'gym'}
                 onChange={handleWorkoutLocChange}/>

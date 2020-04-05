@@ -1,10 +1,14 @@
 import React from 'react';
-import { Container, Card} from 'semantic-ui-react'
+import { Container, Card, Message} from 'semantic-ui-react'
 import { connect } from 'react-redux';
-
-import {addWorkoutLoc, addTypeWorkout, addCardio, addCore} from '../../action/form_action';
+import { withRouter } from 'react-router-dom'
+import {addWorkoutLoc, 
+        addTypeWorkout, 
+        addCardio, 
+        addCore} from '../../action/form_action';
 import {fetchTypeWorkout} from '../../action/panel_action';
 import {clearData} from '../../action/search_workout';
+import {NO_LOCATION_MESSAGE, NO_TYPE_MESSAGE} from '../../util/errorMessages'
 
 import GymWorkoutPanel from '../gympanel/GymWorkoutPanel.jsx'
 import HomeWorkoutPanel from '../homepanel/HomeWorkoutPanel.jsx'
@@ -15,31 +19,104 @@ import './WorkoutPanel.css'
 
 class WorkoutPanel extends React.Component {
 
+    constructor(props){
+        super(props)
+        this.state = {
+            formError: false,
+            workLocError:false,
+            workTypeError:false,
+            errorMessage: '',
+        }
+    }
+
     componentDidMount(){
         this.props.fetchTypeOfWorkout()
         this.props.clearWorkoutData()
     }
 
-    handleWorkoutLocChange = (e, { value }) => this.props.addWorkoutType(value)
-    handleTypeWorkoutChange = (e, {value}) => this.props.addTypeOfWorkout(value)
+    handleButtonClick = () => {
+        const {workoutLocation,typeOfWorkout} = this.props
+
+        this.handleFormValidation(workoutLocation, typeOfWorkout)
+        .then((error) => {
+            if(!error){
+                const location = {
+                    pathname: '/result',
+                    fetchRandWorkout: true
+                }
+                this.props.history.push(location)
+            }   
+        })
+    }
+
+    handleFormValidation = async (location, type) => {
+        let error = false
+        let message = []
+
+        if(location === ""){
+            this.setState({workLocError: true})
+            error = true
+            message.push(NO_LOCATION_MESSAGE)
+        }else{
+            this.setState({workLocError: false})
+        }
+
+        if(type === ""){
+            this.setState({workTypeError: true})
+            error = true
+            message.push(NO_TYPE_MESSAGE)
+        }else{
+            this.setState({workTypeError: false})
+        }
+
+        if(error){
+            this.setState({formError: true})
+        }else{
+            this.setState({formError: false})
+        }
+
+        this.setState({errorMessage: message.shift()})
+
+        return error
+    }
+
+    handleWorkoutLocChange = (e, { value }) => {
+        this.props.addWorkoutType(value)
+        this.handleFormValidation()
+    }
+
+    handleTypeWorkoutChange = (e, {value}) => {
+        this.props.addTypeOfWorkout(value)
+        this.handleFormValidation()
+    }
     handleCardioChange = (e, {checked}) =>  this.props.addCardioWorkout(checked)
     handleCoreChange = (e, {checked}) => this.props.addCoreWorkout(checked)
- 
+    
     render(){
         
         let panel;
+        let message;
         const {typeOfWorkoutList, workoutLocation} = this.props
 
         if(workoutLocation === 'gym'){
             panel = <GymWorkoutPanel 
+                        workTypeError = {this.state.workTypeError}
                         typeOfWorkoutList={typeOfWorkoutList.gym}
                         handleTypeWorkoutChange={this.handleTypeWorkoutChange}
                         handleCardioChange={this.handleCardioChange}
                         handleCoreChange = {this.handleCoreChange}/> 
         }else if(workoutLocation === 'home'){
             panel = <HomeWorkoutPanel 
+                        workTypeError = {this.state.workTypeError}
                         typeOfWorkoutList={typeOfWorkoutList.home}
                         handleTypeWorkoutChange={this.handleTypeWorkoutChange}/>
+        }
+
+        if(this.state.formError){
+            message = <Message
+                        size='small'
+                        error
+                        content={this.state.errorMessage}/>
         }
         
         return(
@@ -49,7 +126,9 @@ class WorkoutPanel extends React.Component {
                         workoutLoc = {workoutLocation}
                         handleWorkoutLocChange = {this.handleWorkoutLocChange}/>
                     {panel}
-                    <GetWorkoutButton />
+                    {message}
+                    <GetWorkoutButton 
+                        handleButtonClick={this.handleButtonClick}/>
                 </Card>
             </Container>
         )
@@ -70,8 +149,9 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return { 
         workoutLocation: state.panel_form_reducer.workoutLocation,
+        typeOfWorkout: state.panel_form_reducer.typeOfWorkout,
         typeOfWorkoutList: state.panel_reducer.payload.workout_type,
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WorkoutPanel);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(WorkoutPanel));

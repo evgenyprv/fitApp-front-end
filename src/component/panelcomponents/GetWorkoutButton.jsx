@@ -1,19 +1,15 @@
 import React from 'react'
-import { Card} from 'semantic-ui-react'
-import { Link } from "react-router-dom";
+import { Button } from 'semantic-ui-react'
 
-const GetWorkoutButton = () => {
+import './style.css'
+
+const GetWorkoutButton = ({handleButtonClick}) => {
     return(
         <div>
-            <Link 
-                to = {{
-                    pathname: '/result',
-                    fetchRandWorkout: true
-                }}>
-                <Card.Content className="generate-button">
-                        Get My Workout    
-                </Card.Content>
-            </Link>
+            <Button className="generate-workout" 
+                onClick={handleButtonClick}>
+                    Get My Workout    
+            </Button>
         </div>
     )
 }

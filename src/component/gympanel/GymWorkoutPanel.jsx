@@ -6,17 +6,21 @@ import IncludePanel from '../panelcomponents/IncludePanel.jsx'
 const GymWorkoutPanel = (props) => {
 
     const typeOptions = []
-
-    props.typeOfWorkoutList.map((type, key) =>
+    const {workTypeError,handleTypeWorkoutChange,
+        handleCardioChange,handleCoreChange, typeOfWorkoutList} = props
+    
+    typeOfWorkoutList.map((type, key) =>
         typeOptions.push({ key: key, text: type.workout_type, value: type.workout_type.toLowerCase()})
     )
 
     return(
         <div>
-            <TypeOfWorkout typeOptions={typeOptions}
-                handleTypeWorkoutChange={props.handleTypeWorkoutChange}/>
-            <IncludePanel handleCardioChange={props.handleCardioChange}
-                handleCoreChange={props.handleCoreChange}/>
+            <TypeOfWorkout 
+                workTypeError ={workTypeError}
+                typeOptions={typeOptions}
+                handleTypeWorkoutChange={handleTypeWorkoutChange}/>
+            <IncludePanel handleCardioChange={handleCardioChange}
+                handleCoreChange={handleCoreChange}/>
         </div>
     )
 }

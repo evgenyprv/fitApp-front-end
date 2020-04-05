@@ -18,3 +18,8 @@ export const RESET_PAGE = "RESET_PAGE";
 export const ADD_CARDIO_HEADER = "ADD_CARDIO_HEADER";
 export const ADD_BODY_HEADER = "ADD_BODY_HEADER";
 export const ADD_CORE_HEADER = "ADD_CORE_HEADER";
+export const CLEAR_PANEL = "CLEAR_PANEL";
+
+export const WORK_LOC_ERROR = "WORK_LOC_NOT_PRESENT";
+export const WORK_TYPE_ERROR = "WORK_TYPE_NOT_PRESENT";
+export const FORM_ERROR = "FORM_ERROR";

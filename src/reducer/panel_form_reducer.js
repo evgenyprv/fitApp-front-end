@@ -1,4 +1,5 @@
-import {WORKOUT_LOC_ADDED,TYPE_WORKOUT_ADDED, INCLUDED_CARDIO, INCLUDED_CORE} from '../action/types';
+import {WORKOUT_LOC_ADDED,TYPE_WORKOUT_ADDED, INCLUDED_CARDIO, 
+    INCLUDED_CORE} from '../action/types';
 
 const initialState={
     workoutLocation: '',
@@ -12,9 +13,9 @@ const initialState={
 export default function panelReducer(state=initialState, action){
     switch(action.type){
         case WORKOUT_LOC_ADDED:
-            return Object.assign({}, state, {
-                workoutLocation: action.payload,
-            }) 
+            let newState = initialState
+            newState['workoutLocation'] = action.payload
+            return Object.assign({}, state, newState)
         case TYPE_WORKOUT_ADDED:
             return Object.assign({}, state, {
                 typeOfWorkout: action.payload,
@@ -32,7 +33,7 @@ export default function panelReducer(state=initialState, action){
                     cardio: state.included.cardio,
                     core: action.payload
                 }
-            }) 
+            })
         default:
             return state;
     }
