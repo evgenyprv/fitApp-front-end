@@ -1,13 +1,13 @@
 import {START_SEARCHING, SEARCHING_SUCCESS, SEARCHING_ERROR, 
-    CLEAR_DATA} from '../action/types'
+    RESET} from '../action/types'
 
 const intialState = {
     isFetching: false,
     payload: {
         exercises: {
-            "Cardio": [],
-            "Body": [],
-            "Core": [],
+            "cardio": [],
+            "body": [],
+            "core": [],
         }
     },
 }
@@ -31,7 +31,7 @@ export default function workoutReducer(state = intialState, action){
                 error: action.error,
                 receivedDate: action.receivedDate,
             })
-        case CLEAR_DATA:
+        case RESET:
             return Object.assign({}, state, intialState)
         default:
             return state;

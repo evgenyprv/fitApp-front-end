@@ -1,5 +1,5 @@
 import {WORKOUT_LOC_ADDED,TYPE_WORKOUT_ADDED, INCLUDED_CARDIO, 
-    INCLUDED_CORE} from '../action/types';
+    INCLUDED_CORE, RESET} from '../action/types';
 
 const initialState={
     workoutLocation: '',
@@ -34,6 +34,8 @@ export default function panelReducer(state=initialState, action){
                     core: action.payload
                 }
             })
+        case RESET:
+            return Object.assign({}, state, initialState)
         default:
             return state;
     }

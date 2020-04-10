@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Card, Dimmer, Loader, Step } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchWorkout } from '../action/search_workout';
 import { loadHeaders, 
@@ -15,11 +16,11 @@ import FooterPagination from '../component/misc/FooterPagination.jsx'
 
 class Result extends React.Component{
 
-
     componentDidMount(){
         if(this.props.location.fetchRandWorkout){
-            this.props.fetchWorkoutData(this.props.workoutType, this.props.workoutLoc, false, false)
-            .then(() => {this.props.loadExistingHeaders(this.props.labels)})
+            this.props.fetchWorkoutData(this.props.workoutType, this.props.workoutLoc, 
+                this.props.cardio, this.props.core)
+                .then(() => {this.props.loadExistingHeaders(this.props.labels)})
         }
     }
 
@@ -50,24 +51,28 @@ class Result extends React.Component{
 
         const { payload, currentPage, isFetching, headers} = this.props
 
+        if(isFetching){
+            return(
+                <div> 
+                    <Dimmer active inverted>
+                        <Loader inverted content='Loading'/>
+                    </Dimmer>
+                </div>
+            )
+        }
+
         return(
             <Container className="container-extra">
-                {isFetching ?
-                    <div> 
-                        <Dimmer active inverted>
-                            <Loader inverted content='Loading'/>
-                        </Dimmer>
-                    </div> :
-                    <Card centered raised className="container-card">
-                        <Step.Group items = {headers}/>
-                        <ExerciseList data = {payload[currentPage][1]} />
-                        <FooterPagination 
-                            numPages={payload.length-1}
-                            currentPage={currentPage}
-                            handlePageBack={this.handlePageBack}
-                            handlePageNext={this.handlePageNext}/>
-                    </Card>
-                }
+                <Card centered raised className="container-card">
+                    <Step.Group items = {headers}/>
+                    <ExerciseList data = {payload}
+                        currentPage={currentPage}/>
+                    <FooterPagination 
+                        numPages={payload.length-1}
+                        currentPage={currentPage}
+                        handlePageBack={this.handlePageBack}
+                        handlePageNext={this.handlePageNext}/>
+                </Card>
             </Container>
         )
     }
@@ -75,7 +80,9 @@ class Result extends React.Component{
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchWorkoutData: async (type, location) => {await dispatch(fetchWorkout(type, location))},
+        fetchWorkoutData: async (type, location, cardio, core) => {
+            return await dispatch(fetchWorkout(type, location, cardio, core)) 
+        },
         loadExistingHeaders: (name) => {dispatch(loadHeaders(name))},
         changeToPage: async (data) => {await dispatch(changePage(data))},
         resetPage: () => {dispatch(resetPage())},
@@ -95,19 +102,22 @@ const mapStateToProps = (state) => {
         error: state.workout_reducer.error,
         workoutType: state.panel_form_reducer.typeOfWorkout,
         workoutLoc: state.panel_form_reducer.workoutLocation,
+        cardio: state.panel_form_reducer.included.cardio,
+        core: state.panel_form_reducer.included.core,
     }
 }
 
 const transformPayload = (payload) => {
-    return Object.entries(payload)
+    return payload !== undefined ? Object.entries(payload) : payload
 }
 
 const retrieveLables = (payload) => {
-    return Object.keys(payload)
+    return payload !== undefined ? Object.keys(payload) : payload
 }
 
 const retrieveHeaders = (payload) => {
-    return Object.values(payload).filter(header => Object.keys(header).length > 0)
+    return payload !== undefined ? 
+        Object.values(payload).filter(header => Object.keys(header).length > 0) : payload
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Result);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Result));

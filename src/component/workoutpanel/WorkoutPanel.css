@@ -4,10 +4,6 @@
     align-items: center;
 }
 
-.ui.card {
-    background: #fdf2f2 !important;
-}
-
 .ui.error.message{
     width: 80% !important;
 }

@@ -1,4 +1,5 @@
-import {ADD_BODY_HEADER, ADD_CORE_HEADER, ADD_CARDIO_HEADER} from '../action/types';
+import {CHANGE_CARDIO_HEADER, CHANGE_BODY_HEADER, 
+    CHANGE_CORE_HEADER, ADD_HEADERS, RESET} from '../action/types';
 
 const initialState = {
     cardioHeader: {},
@@ -8,18 +9,22 @@ const initialState = {
 
 export default function changePageReducer(state = initialState, action){
     switch(action.type){
-        case ADD_CARDIO_HEADER:
+        case ADD_HEADERS:
+            return Object.assign({}, state, action.payload)
+        case CHANGE_CARDIO_HEADER:
             return Object.assign({}, state,{
                 cardioHeader: action.payload
             })
-        case ADD_BODY_HEADER:
+        case CHANGE_BODY_HEADER:
             return Object.assign({}, state,{
                 bodyHeader: action.payload
             })
-        case ADD_CORE_HEADER:
+        case CHANGE_CORE_HEADER:
             return Object.assign({}, state,{
                 coreHeader: action.payload
             })
+        case RESET:
+            return Object.assign({}, state, initialState)
         default: 
             return state
     }

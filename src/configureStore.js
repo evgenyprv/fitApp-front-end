@@ -12,10 +12,10 @@ if (process.env.NODE_ENV === 'development') {
   middleware = [...middleware, thunkMiddleware];
 }
 
-export default function configureStore(preloadedState) {
+export default function configureStore(persistedState) {
   return createStore(
     rootReducer,
-    preloadedState,
+    persistedState,
     applyMiddleware(...middleware)
   )
 }

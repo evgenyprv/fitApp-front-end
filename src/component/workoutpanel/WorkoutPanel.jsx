@@ -7,7 +7,7 @@ import {addWorkoutLoc,
         addCardio, 
         addCore} from '../../action/form_action';
 import {fetchTypeWorkout} from '../../action/panel_action';
-import {clearData} from '../../action/search_workout';
+import {clearData} from '../../action/misc_action';
 import {NO_LOCATION_MESSAGE, NO_TYPE_MESSAGE} from '../../util/errorMessages'
 
 import GymWorkoutPanel from '../gympanel/GymWorkoutPanel.jsx'
@@ -114,7 +114,7 @@ class WorkoutPanel extends React.Component {
 
         if(this.state.formError){
             message = <Message
-                        size='small'
+                        size='medium'
                         error
                         content={this.state.errorMessage}/>
         }

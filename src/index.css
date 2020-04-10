@@ -4,18 +4,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 
-  /* background: linear-gradient(0.20turn,#ff3030, #ff6d6d, #99c1ff), */
-  /* background: linear-gradient(0.235turn, #ff3030, #ff6d6d, #B9FFB5), */
-  background: linear-gradient(0deg,#3d3d3d,#ff6e6e, #fee6e6 90%), 
-              url("./images/back_img3.jpg") !important;
-  /* fa709a,  */
   background-blend-mode: multiply, luminosity;
-  background-size: 100% 100% !important;
-
-  /* -webkit-animation: backGroundWave 8s ease infinite !important;
-  -moz-animation: backGroundWave 8s ease infinite !important;
-  -o-animation: backGroundWave 8s ease infinite !important;
-  animation: backGroundWave 8s ease infinite !important; */
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,18 +15,26 @@ code {
     monospace;
 }
 
-@-webkit-keyframes backGroundWave {
-  0%, 100%{background-position:100% 85%}
-  30%{background-position:25% 75%}
-  /* 60%{background-position:15% 90%} */
+@media (max-height: 900px) {
+  body {
+    background: linear-gradient(0deg,#3d3d3d 27%,#ff6e6e, #fee6e6 90%), 
+              url("./images/back_img.jpg") !important;
+    background-size: 100% 135% !important;
+  }
 }
-@-moz-keyframes backGroundWave {
-  0%, 100%{background-position:100% 85%}
-  50%{background-position:25% 75%}
-  /* 75%{background-position:15% 90%} */
+
+@media (min-height: 900px) {
+  body {
+    background: linear-gradient(0deg,#3d3d3d 10%,#ff6e6e, #fee6e6 90%), 
+              url("./images/back_img.jpg") !important;
+    background-size: 100% 110% !important;
+  }
 }
-@keyframes backGroundWave {
-  0%, 100%{background-position:100% 85%}
-  30%{background-position:25% 75%}
-  /* 60%{background-position:15% 90%} */
+
+@media (min-height: 1140px) {
+  body {
+    background: linear-gradient(0deg,#3d3d3d 7%,#ff6e6e, #fee6e6 90%), 
+              url("./images/back_img.jpg") !important;
+    background-size: 100% 100% !important;
+  }
 }

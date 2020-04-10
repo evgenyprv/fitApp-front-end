@@ -3,9 +3,7 @@ import { Step } from 'semantic-ui-react';
 
 import './HeaderProgress.css'
 
-const HeaderProgress = ({handleLoadHeaders, headers}) =>{
-
-    // handleLoadHeaders()
+const HeaderProgress = ({headers}) =>{
 
     return(<Step.Group items = {headers}/>)
 }

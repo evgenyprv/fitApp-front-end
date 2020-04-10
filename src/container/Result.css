@@ -2,10 +2,9 @@
     display: flex !important;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    height: 95vh;
     margin: 32px 0px;
 }
-
 
 .container-card{
     width: 400px !important;
@@ -14,6 +13,7 @@
 .ui.steps {
     display: table;
     width: 100%;
+    margin-bottom: 0;
 }
 
 .ui.steps .step{
@@ -25,13 +25,21 @@
 }
 
 .ui.steps .step.active .title{
-    color: #3d3d3d;
+    color: #170605;
 }
 
 .ui.ordered.steps .step.completed:before, .ui.steps .step.completed>.icon:before{
-    color: #fee6e6;
+    color: #5ba03b;
 }
 
 .ui.ordered.steps .step.active:before, .ui.steps .active.step .icon{
-    color:  #3d3d3d;
+    color:  #170605;
+}
+
+.ui.steps .step.active{
+    background: white !important;
+}
+
+.ui.steps .disabled.step{
+    background: #f3f4f5 !important;
 }

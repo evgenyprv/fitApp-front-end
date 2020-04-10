@@ -15,10 +15,12 @@ export const FETCH_TYPE_ERROR = "FETCH_TYPE_ERROR";
 export const BACK_PAGE = "BACK_PAGE";
 export const NEXT_PAGE = "NEXT_PAGE";
 export const RESET_PAGE = "RESET_PAGE";
-export const ADD_CARDIO_HEADER = "ADD_CARDIO_HEADER";
-export const ADD_BODY_HEADER = "ADD_BODY_HEADER";
-export const ADD_CORE_HEADER = "ADD_CORE_HEADER";
-export const CLEAR_PANEL = "CLEAR_PANEL";
+export const ADD_HEADERS = "ADD_HEADERS";
+export const CHANGE_CARDIO_HEADER = "CHANGE_CARDIO_HEADER";
+export const CHANGE_BODY_HEADER = "CHANGE_BODY_HEADER";
+export const CHANGE_CORE_HEADER = "CHANGE_CORE_HEADER";
+
+export const RESET = "RESET";
 
 export const WORK_LOC_ERROR = "WORK_LOC_NOT_PRESENT";
 export const WORK_TYPE_ERROR = "WORK_TYPE_NOT_PRESENT";

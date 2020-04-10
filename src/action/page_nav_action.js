@@ -1,5 +1,5 @@
-import {BACK_PAGE,NEXT_PAGE, ADD_BODY_HEADER, 
-    ADD_CORE_HEADER, ADD_CARDIO_HEADER,RESET_PAGE} from './types';
+import {BACK_PAGE,NEXT_PAGE, CHANGE_CARDIO_HEADER, CHANGE_BODY_HEADER, 
+    CHANGE_CORE_HEADER,ADD_HEADERS, RESET_PAGE} from './types';
 
 const goToBackPage = (page) => {
     return{
@@ -17,7 +17,7 @@ const goToNextPage = (page) => {
 
 const addCardioHeader = (active, disabled, completed) => {
     return{
-        type: ADD_CARDIO_HEADER,
+        type: CHANGE_CARDIO_HEADER,
         payload: {
             key: 'cardio_header',
             active: active, 
@@ -31,7 +31,7 @@ const addCardioHeader = (active, disabled, completed) => {
 
 const addBodyHeader = (active, disabled, completed) => {
     return{
-        type: ADD_BODY_HEADER,
+        type: CHANGE_BODY_HEADER,
         payload: {
             key: 'body_header',
             active: active, 
@@ -45,7 +45,7 @@ const addBodyHeader = (active, disabled, completed) => {
 
 const addCoreHeader = (active, disabled, completed) => {
     return{
-        type: ADD_CORE_HEADER,
+        type: CHANGE_CORE_HEADER,
         payload: {
             key: 'core_header',
             active: active, 
@@ -57,17 +57,24 @@ const addCoreHeader = (active, disabled, completed) => {
     }
 }
 
+const addHeaders = (headers) => {
+    return{
+        type: ADD_HEADERS,
+        payload: headers
+    }
+}
+
 export const changeHeaderToCompleted = (data) => {
     return (dispatch) => {
         switch(data){
             case "cardio_header":
-                dispatch(addCardioHeader(false, false, true))
+                dispatch(addCardioHeader(false, true, true))
                 break
             case "body_header":
-                dispatch(addBodyHeader(false, false, true))
+                dispatch(addBodyHeader(false, true, true))
                 break
             case "core_header":
-                dispatch(addCoreHeader(false, false, true))
+                dispatch(addCoreHeader(false, true, true))
                 break
             default:
                 /* falls through */
@@ -111,22 +118,44 @@ export const changeHeaderToDisabled = (data) => {
     }
 }
 
-
 export const loadHeaders = (data) => {
     return (dispatch) => {
         let disabled = false
         let active = true
+        let headers = {}
         for (let i = 0; i < data.length; i++){
             if(data[i] === "cardio"){
-                dispatch(addCardioHeader(active, disabled, false))
+                headers['cardioHeader']= {
+                        key: 'cardio_header',
+                        active: active, 
+                        disabled: disabled,
+                        completed: false,
+                        icon: 'heartbeat',
+                        title: 'Cardio',
+                }
             }else if(data[i] === "body"){
-                dispatch(addBodyHeader(active, disabled, false))
+                headers['bodyHeader'] = {
+                        key: 'body_header',
+                        active: active, 
+                        disabled: disabled,
+                        completed: false,
+                        icon: 'user',
+                        title: 'Body',
+                }
             }else if(data[i] === "core"){
-                dispatch(addCoreHeader(active, disabled, false))
+                headers['coreHeader'] = {
+                        key: 'core_header',
+                        active: active, 
+                        disabled: disabled,
+                        completed: false,
+                        icon: 'shield',
+                        title: 'Core',
+                }
             }
             disabled = true
             active = false
         }
+        dispatch(addHeaders(headers))
     }
 }
 

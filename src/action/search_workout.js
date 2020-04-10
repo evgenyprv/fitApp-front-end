@@ -1,4 +1,5 @@
-import {START_SEARCHING, SEARCHING_SUCCESS, SEARCHING_ERROR, CLEAR_DATA} from './types';
+import {START_SEARCHING, SEARCHING_SUCCESS, 
+    SEARCHING_ERROR} from './types';
 import API from '../rest/api';
 
 const startFetching = () =>{
@@ -24,49 +25,26 @@ const fetchingError = (err) => {
     }
 }
 
-export const clearData = () => {
-    return{
-        type: CLEAR_DATA,
-        receivedDate: Date.now()
-    }
-}
-
-const fetchWorkoutByType = (workout_type, location) => {
-    return async (dispatch) => {
-        dispatch(startFetching())
-        return API.get('/workout/'+location,{
-            params: {
-                type: workout_type
-            }
-        })
-        .then(result => {
-            dispatch(fetchingSuccess(result.data))
-        })
-        .catch(error => {
-            dispatch(fetchingError(error))
-        })
-    }
-}
-
-const fetchRandomWorkout = () => {
-    return async (dispatch) => {
-        return API.get('/workout/random')
-        .then(result => {
-            dispatch(fetchingSuccess(result.data))
-        })
-        .catch(error => {
-            dispatch(fetchingError(error))
-        })
-    }
-}
 
 export const fetchWorkout = (workout_type, location, cardio, core) => {
     return async (dispatch) => {
         dispatch(startFetching())
-        if(workout_type === "random"){
-            return await dispatch(fetchRandomWorkout())
-        }else{
-            return await dispatch(fetchWorkoutByType(workout_type, location))
-        }
+
+        const response = API.post('/workout/',{
+            location: location,
+            type: workout_type,
+            cardio: cardio,
+            core: core,
+        })
+        .then(result => {
+            dispatch(fetchingSuccess(result.data))
+            return result.data
+        })
+        .catch(error => {
+            dispatch(fetchingError(error))
+            throw(error)
+        })
+
+        return response
     }
 }

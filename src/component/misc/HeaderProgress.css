@@ -11,3 +11,11 @@
     margin-top:16px;
 }
 
+.ui.steps.step.active{
+    background: white !important;
+}
+
+.ui.steps.disabled.step{
+    background: #f3f4f5 !important;
+}
+

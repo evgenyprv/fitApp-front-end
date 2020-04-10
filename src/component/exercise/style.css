@@ -1,14 +1,17 @@
 .custom-list{
-    margin: 0px 0px !important;
+    margin: 16px 8px !important;
 }
 
 .list-item{
-    margin: 8px 8px;
+    margin: 8px 8px !important;
     display: flex !important;
     flex-direction: row ;
     justify-content: space-around;
     align-items: stretch !important;
-    background-color: #fdf2f2;
+    background-color: #f4f4f4 !important;
+    border-radius: 10px;
+    widows: 95% !important;
+
 }
 
 .list-item-cell{
@@ -20,26 +23,22 @@
     margin: 16px 0px 0px;
 }
 
-.button{
+.set-button{
     height: 70px;
+    background:#eddbc7 !important;
+    width: 82px;
 }
 
 .disable-button{
-    width: 81px;
+    background-color: transparent !important;
+    opacity: 1 !important;
+    color: #fb9935 !important;
 }
 
 .button-margins{
     margin: 8px 8px !important;
 }
 
-.ui.button{
-    background:#fee6e6;
-}
-
-.ui.red.button{
-    background-color: #fee6e6;
-}
-
-.ui.red.button, .ui.red.buttons .button{
-    color: #3d3d3d;
+.tropy-icon{
+    margin: 0 auto !important;
 }

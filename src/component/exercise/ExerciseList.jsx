@@ -4,24 +4,33 @@ import ExerciseItem from './ExerciseItem.jsx';
 
 import './style.css'
 
-const ExerciseList = ({data}) => {
-    let listItems;
+class ExerciseList extends React.Component{
 
-    if(data !== undefined){
-        listItems = data.map((data, key) =>
-            <ExerciseItem key={key} 
-                bodyPart={data.body_part} 
-                exerciseName={data.exercise_name}
-                sets={data.sets}
-                reps={data.reps}/>
+    handleSetClick = (exerciseName, exerciseDone) => {}
+
+    render(){
+        let listItems;
+
+        const {data,currentPage} = this.props
+
+        if(data !== undefined){
+            listItems = data[currentPage][1].map((data) =>
+                <ExerciseItem 
+                    key={data['exercise_name']} 
+                    bodyPart={data.body_part} 
+                    exerciseName={data.exercise_name}
+                    sets={data.sets}
+                    reps={data.reps}
+                    handleSetClick={this.handleSetClick}/> 
+            )
+        }
+
+        return(
+            <List verticalAlign='middle' className='custom-list'>
+                {listItems}
+            </List> 
         )
     }
-
-    return(
-        <List divided verticalAlign='middle' className='custom-list'>
-            {listItems}
-        </List> 
-    )
 }
 
 export default ExerciseList;

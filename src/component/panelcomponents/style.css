@@ -4,7 +4,6 @@
     justify-content: space-evenly !important;
     align-items: center;
     margin: 16px !important;
-    width: 80%;
 }
 
 .panel-label{
@@ -14,5 +13,13 @@
 .generate-workout{
     background: none !important;
     height: 45px !important;
-    margin: 16px !important; 
+    margin-bottom: 24px !important; 
+}
+
+.location-row-width{
+    width: 80% !important;
+}
+
+.ui.checkbox .box, .ui.checkbox label{
+    font-size: 1.1rem !important
 }
